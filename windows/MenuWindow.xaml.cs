@@ -28,8 +28,8 @@ namespace OOOCutlery.windows
             InitializeComponent();
             // Найти строку БД по значению id, сохранённом в статичном классе
             var lp = tradeEntities.User.Where(x => x.UserID.Equals(StaticDataClass.id)).FirstOrDefault();
-            NameLabel = lp.UserName; // Присвоить label значение имени из найленной строки БД
-            SurnameLabel = lp.UserSurname; // Присвоить label значение фамилии из найленной строки БД
+            NameLabel = lp.UserName; // Присвоить label значение имени из найденной строки БД
+            SurnameLabel = lp.UserSurname; // Присвоить label значение фамилии из найденной строки БД
 
         }
     }
