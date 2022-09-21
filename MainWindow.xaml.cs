@@ -31,15 +31,16 @@ namespace OOOCutlery
 
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
+            // Найти в БД строку с совпадающими логином и паролем
             var lp = tradeEntities.User.Where(x => x.UserLogin.Equals(LoginBox.Text) && x.UserPassword.Equals(PasswordBox.Password)).FirstOrDefault();
-
-            if (lp == null)
+            
+            if (lp == null) // Если совпадений нет, то FirstORDefault вернёт null
             {
                 MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK);
             }
-            else
+            else 
             {
-                StaticDataClass.id = lp.UserID;
+                StaticDataClass.id = lp.UserID; // Присвоить переменной значение id равное UserID из найденной строки БД
                 MenuWindow window = new MenuWindow();
                 window.Show();
             }

@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="MenuWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel Grid.Row="1" Margin="20">
-            <Label Height="30" Content="Введите логин" Width="300" ></Label>
-            <TextBox Height="30" Width="300" Name="LoginBox"></TextBox>
-            <Label Height="30" Content="Введите пароль" Width="300" ></Label>
-            <TextBox Height="30" Width="300" Name="PasswordBox"></TextBox>
+        <StackPanel Grid.Row="1" Margin="20" HorizontalAlignment="Left">
+            <Label Height="30" Content="Имя" Width="300" ></Label>
+            <Label Height="30" Width="300" Name="NameLabel"></Label>
+            <Label Height="30" Content="Фамилия" Width="300" ></Label>
+            <Label Height="30" Width="300" Name="SurnameLabel"></Label>
         </StackPanel>
     </Grid>
 </Window>
