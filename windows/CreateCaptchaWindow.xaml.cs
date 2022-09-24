@@ -22,76 +22,59 @@ namespace OOOCutlery.windows
     /// </summary>
     public partial class CreateCaptchaWindow : Window
     {
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        Random random = new Random();       
-        string captchaContent;
-        int timerTick = 10;
+        Random random = new Random(); // Random позволяет сгенерировать случайное число для выбора определённой капчи
+        string captchaContent; // Строка которая хранит текст капчи на представленном изображении
 
         public CreateCaptchaWindow()
         {
             InitializeComponent();
 
-            CaptchaCreate();
+            CaptchaCreate(); // При запуске окна метод CaptchaCreate() случайным образом выводит капчу
 
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Application.Current.Shutdown(); // Если пользователь не хочет ввести капчу, то он может завершить работу приложения
         }
-        private void CaptchaCreate()
+        private void CaptchaCreate() // Метод генерации капчи
         {
 
-            int numberCaptcha = random.Next(1, 3);
-
-            if(numberCaptcha == 1)
+            int numberCaptcha = random.Next(1, 3); // Метод Next() генерирует заданное число в указанном диапазоне
+            // В данном случае будет сгенерировано число 1 или 2 (число 3 не входит в диапазон)
+            if(numberCaptcha == 1) // Если сгенерировано число 1
             {
-                CaptchaImage.Source = new BitmapImage(new Uri("images/captcha1.png", UriKind.Relative));
-                captchaContent = "A0E6";
+                CaptchaImage.Source = new BitmapImage(new Uri("images/captcha1.png", UriKind.Relative)); // Определяет источник получаемого изображения
+                // UriKind.Relative определяет, что адресс изображения относительный, т.е. оно расположенно внутри приложения
+                captchaContent = "A0E6"; // Текст представленный на капче
             }
-            else if (numberCaptcha == 2)
+            else if (numberCaptcha == 2) // Если сгенерировано число 2
             {
                 CaptchaImage.Source = new BitmapImage(new Uri("images/captcha2.png", UriKind.Relative));
                 captchaContent = "M37S";
+                // Таких повторений можеть быть больше
             }
         }
 
-        private void CaptchaButton_Click(object sender, RoutedEventArgs e)
+        private void CaptchaButton_Click(object sender, RoutedEventArgs e) // При нажатии на кнопку Готово
         {
-            if(CaptchaBox.Text == captchaContent)
-           this.Close();
-            else
+            if(CaptchaBox.Text == captchaContent) // Если текст введённый пользователем соответствует содержимому капчи
             {
-                CaptchaBox.Text = "";
-                CaptchaStackPanel.Visibility = Visibility.Hidden;
-                TimerStackPanel.Visibility = Visibility.Visible;
                 
-                
-                dispatcherTimer.Interval = TimeSpan.FromSeconds(0.5);
-                dispatcherTimer.Start();
-                while(timerTick != 0)
-                dispatcherTimer.Tick += DispatcherTimer_Tick;
-                TimerLabel.Content = timerTick.ToString();             
+                MenuWindow menuWindow = new MenuWindow();
+                menuWindow.Show(); // Открыть окно главного меню
+                this.Close(); // И закрыть текущее окно
 
-
-                CaptchaCreate();
+            }
+            else // Если пользователь решил капчу неверно
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show(); // Вернуть пользователя к окну авторизации
+                // В окне авторизации будет активирован таймер блокировки на 10 секунд
+                this.Close();
             }
         }
-        private void DispatcherTimer_Tick(object sender ,EventArgs e)
-        {
-            TimerLabel.Content = timerTick.ToString();
-            timerTick--;
-            
-        }
+
     }
 }
-
-
-
-
-
-
-
-
-
 
