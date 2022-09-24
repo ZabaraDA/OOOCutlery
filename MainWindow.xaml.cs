@@ -23,7 +23,8 @@ namespace OOOCutlery
     /// </summary>
     public partial class MainWindow : Window
     {
-        TradeEntities tradeEntities = new TradeEntities();  
+        TradeEntities1 tradeEntities = new TradeEntities1();  
+        bool incorrectly = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +37,18 @@ namespace OOOCutlery
             
             if (lp == null) // Если совпадений нет, то FirstORDefault вернёт null
             {
-                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK);
+               
+                if (incorrectly == false)
+                {
+                    MessageBox.Show("Логин или пароль введены неверно: \n\n1) Проверьте правильность ввода\n\n2) Обратитесь к администратору", "Ошибка авторизации");
+                    incorrectly = true;
+                }
+                else if(incorrectly == true)
+                {
+                    CreateCaptchaWindow createCaptchaWindow = new CreateCaptchaWindow();
+                    createCaptchaWindow.ShowDialog();
+                }
+
             }
             else 
             {
@@ -44,6 +56,8 @@ namespace OOOCutlery
                 MenuWindow window = new MenuWindow();
                 window.Show();
             }
+
+
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

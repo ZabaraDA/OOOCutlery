@@ -13,10 +13,10 @@ namespace OOOCutlery.databases
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TradeEntities : DbContext
+    public partial class TradeEntities1 : DbContext
     {
-        public TradeEntities()
-            : base("name=TradeEntities")
+        public TradeEntities1()
+            : base("name=TradeEntities1")
         {
         }
     

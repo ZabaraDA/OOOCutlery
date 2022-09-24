@@ -65,32 +65,35 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="csclasses\StaticDataClass.cs" />
-    <Compile Include="databases\OOOModel.Context.cs">
+    <Compile Include="databases\DatabasesModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OOOModel.Context.tt</DependentUpon>
+      <DependentUpon>DatabasesModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="databases\OOOModel.cs">
+    <Compile Include="databases\DatabasesModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OOOModel.tt</DependentUpon>
+      <DependentUpon>DatabasesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="databases\OOOModel.Designer.cs">
+    <Compile Include="databases\DatabasesModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OOOModel.edmx</DependentUpon>
+      <DependentUpon>DatabasesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="databases\Order.cs">
-      <DependentUpon>OOOModel.tt</DependentUpon>
+      <DependentUpon>DatabasesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="databases\Product.cs">
-      <DependentUpon>OOOModel.tt</DependentUpon>
+      <DependentUpon>DatabasesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="databases\Role.cs">
-      <DependentUpon>OOOModel.tt</DependentUpon>
+      <DependentUpon>DatabasesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="databases\User.cs">
-      <DependentUpon>OOOModel.tt</DependentUpon>
+      <DependentUpon>DatabasesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="windows\CreateCaptchaWindow.xaml.cs">
+      <DependentUpon>CreateCaptchaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
@@ -107,6 +110,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\CreateCaptchaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\MenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,12 +137,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="databases\OOOModel.edmx">
+    <EntityDeploy Include="databases\DatabasesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OOOModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DatabasesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="databases\OOOModel.edmx.diagram">
-      <DependentUpon>OOOModel.edmx</DependentUpon>
+    <None Include="databases\DatabasesModel.edmx.diagram">
+      <DependentUpon>DatabasesModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -150,19 +157,21 @@
     <Folder Include="pages\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="databases\OOOModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OOOModel.Context.cs</LastGenOutput>
-      <DependentUpon>OOOModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="databases\OOOModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OOOModel.edmx</DependentUpon>
-      <LastGenOutput>OOOModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="databases\DatabasesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabasesModel.edmx</DependentUpon>
+      <LastGenOutput>DatabasesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="databases\DatabasesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabasesModel.edmx</DependentUpon>
+      <LastGenOutput>DatabasesModel.cs</LastGenOutput>
+    </Content>
+    <Resource Include="windows\images\captcha2.png" />
+    <Resource Include="windows\images\captcha1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

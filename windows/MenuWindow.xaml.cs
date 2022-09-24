@@ -21,15 +21,15 @@ namespace OOOCutlery.windows
     /// </summary>
     public partial class MenuWindow : Window
     {
-        TradeEntities tradeEntities = new TradeEntities();
+        TradeEntities1 tradeEntities = new TradeEntities1();
         
         public MenuWindow()
         {
             InitializeComponent();
             // Найти строку БД по значению id, сохранённом в статичном классе
             var lp = tradeEntities.User.Where(x => x.UserID.Equals(StaticDataClass.id)).FirstOrDefault();
-            NameLabel = lp.UserName; // Присвоить label значение имени из найденной строки БД
-            SurnameLabel = lp.UserSurname; // Присвоить label значение фамилии из найденной строки БД
+            NameLabel.Content = lp.UserName; // Присвоить label значение имени из найденной строки БД
+            SurnameLabel.Content = lp.UserSurname; // Присвоить label значение фамилии из найденной строки БД
 
         }
     }

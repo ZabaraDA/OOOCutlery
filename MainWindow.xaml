@@ -5,26 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOOCutlery"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="400" FontSize="18" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="MainWindow" Height="670" Width="500" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" FontSize="20">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="420"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
 
         </Grid.RowDefinitions>
 
-        <Label Content="Авторизация" HorizontalAlignment="Center" Margin="20" FontSize="18"></Label>
 
-        <StackPanel Grid.Row="1" Margin="20">
-            <Label Height="30" Content="Введите логин" Width="300" ></Label>
-            <TextBox Height="30" Width="300" Name="LoginBox"></TextBox>
-            <Label Height="30" Content="Введите пароль" Width="300" ></Label>
-            <PasswordBox Height="30" Width="300" Name="PasswordBox"></PasswordBox>
+        <Border Grid.RowSpan="2" CornerRadius="5" Margin="20,0" Grid.Row="1">
+            <Border.Background >
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE8E8E8" Offset="0"/>
+                    <GradientStop Color="#FFE4E4E4" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Label Content="Авторизация" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" Margin="138,25,138,0" Height="56" Width="224"></Label>
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,10,10" Height="270">
+            <Label Content="Войти как:" Width="250" FontSize="18"/>
+            <ComboBox Width="250" FontSize="18" Height="35" Margin="0 0 0 30" VerticalContentAlignment="Center" x:Name="RegBox" HorizontalContentAlignment="Center">
+                <ComboBoxItem Content="Администратор" IsSelected="True" Name="V0"/>
+                <ComboBoxItem Content="Менеджер" Name="V1"/>
+                <ComboBoxItem Content="Клиент" Name="V2"/>
+
+
+            </ComboBox>
+            <Label Content="Логин" Width="250" FontSize="18"/>
+            <TextBox Width="250" Height="35" Margin="0 0 0 30" TextAlignment="Center" x:Name="LoginBox" VerticalContentAlignment="Center"></TextBox>
+            <Label Content="Пароль" Width="250" FontSize="18"/>
+            <PasswordBox Width="250" Height="35"  x:Name="PasswordBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0 0 0 30"></PasswordBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Margin="20">
-            <Button Height="50" Width="100" Content="Войти" x:Name="OpenButton" Click="OpenButton_Click" Margin="10"></Button>
-            <Button Height="50" Width="100" Content="Выйти" x:Name="ExitButton" Click="ExitButton_Click"></Button>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Vertical" Margin="20,0,20,15" Height="160" Width="460">
+            <StackPanel Orientation="Vertical" Width="300" >
+                <Button Width="140" Height="60" Content="Войти" FontSize="24" x:Name="OpenButton" Click="OpenButton_Click" FontWeight="Bold"></Button>
+                <Button Width="140" Height="60" Margin="10" Content="Выйти"  FontSize="24" x:Name="ExitButton"  Click="ExitButton_Click" Background="{x:Null}" Foreground="#FF707070" FontWeight="Bold" >
+                </Button>
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>

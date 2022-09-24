@@ -226,7 +226,7 @@
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TradeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TradeEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -249,7 +249,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище TradeModelContainer" CdmEntityContainer="TradeEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TradeModelContainer" CdmEntityContainer="TradeEntities1">
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="TradeModel.Order">
               <MappingFragment StoreEntitySet="Order">
