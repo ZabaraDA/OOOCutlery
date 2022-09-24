@@ -52,7 +52,7 @@ namespace OOOCutlery.windows
             {
                 CaptchaImage.Source = new BitmapImage(new Uri("images/captcha2.png", UriKind.Relative));
                 captchaContent = "M37S";
-                // Таких повторений можеть быть больше
+                // Таких повторений может быть больше
             }
         }
 

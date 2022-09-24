@@ -51,7 +51,7 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Name ="TimerStackPanel" Grid.RowSpan="3" Visibility="Hidden">
 
-            <Label Content="Каптча введена неверно"></Label>
+            <Label Content="Данные введены неверно"></Label>
             <Label FontSize="36" Name="TimerLabel" Content="ewdfefe" HorizontalAlignment="Center"></Label>
 
         </StackPanel>
