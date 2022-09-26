@@ -20,7 +20,7 @@ using System.Windows.Threading;
 namespace OOOCutlery
 {
   
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window // Окно авторизации
     {
         TradeEntities1 tradeEntities = new TradeEntities1();
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); // Для блокировки входа на определённое время нужно обратится к таймеру
@@ -66,6 +66,7 @@ namespace OOOCutlery
             {
 
                 StaticDataClass.id = lp.UserID; // Присвоить переменной значение id равное UserID из найденной строки БД 
+                StaticDataClass.role = lp.UserRole; // Запомнить роль пользователя, в данном коде не используется, применятется для СУБД Workbench
                 CreateCaptchaWindow createCaptchaWindow = new CreateCaptchaWindow();
                 createCaptchaWindow.ShowDialog(); // Открыть окно с каптчей
                 // Метод ShowDialog() заблокирует возможность взаимодействия c окном авторизации пока открыто окно с каптчей
@@ -74,6 +75,7 @@ namespace OOOCutlery
             else if (incorrectly == false) // Если логин и пароль были верно введены с первого раза
             {
                 StaticDataClass.id = lp.UserID; // Присвоить переменной значение id равное UserID из найденной строки БД 
+                StaticDataClass.role = lp.UserRole; // Запомнить роль пользователя, в данном коде не используется, применяется для СУБД Workbench
                 MenuWindow menuWindow = new MenuWindow(); 
                 menuWindow.Show(); // Открыть главное меню
                 this.Close(); // И закрыть текущее окно
@@ -85,7 +87,6 @@ namespace OOOCutlery
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown(); // Закрыть приложение
-
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

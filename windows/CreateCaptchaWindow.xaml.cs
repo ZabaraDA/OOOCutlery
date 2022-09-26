@@ -20,7 +20,7 @@ namespace OOOCutlery.windows
     /// <summary>
     /// Логика взаимодействия для CreateCaptchaWindow.xaml
     /// </summary>
-    public partial class CreateCaptchaWindow : Window
+    public partial class CreateCaptchaWindow : Window // Окно с капчей
     {
         Random random = new Random(); // Random позволяет сгенерировать случайное число для выбора определённой капчи
         string captchaContent; // Строка которая хранит текст капчи на представленном изображении

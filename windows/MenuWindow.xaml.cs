@@ -13,13 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using OOOCutlery.databases;
 using OOOCutlery.csclasses;
+using OOOCutlery.pages;
+using OOOCutlery.Properties;
 
 namespace OOOCutlery.windows
 {
     /// <summary>
     /// Логика взаимодействия для MenuWindow.xaml
     /// </summary>
-    public partial class MenuWindow : Window
+    public partial class MenuWindow : Window // Окно главного меню
     {
         TradeEntities1 tradeEntities = new TradeEntities1();
         
@@ -30,6 +32,83 @@ namespace OOOCutlery.windows
             var lp = tradeEntities.User.Where(x => x.UserID.Equals(StaticDataClass.id)).FirstOrDefault();
             NameLabel.Content = lp.UserName; // Присвоить label значение имени из найденной строки БД
             SurnameLabel.Content = lp.UserSurname; // Присвоить label значение фамилии из найденной строки БД
+            MenuFrame.Navigate(new WelcomePage()); // При старте окна MenuWindow открывает в фрейме приветственную страницу
+            RoleLabel.Content = lp.Role.RoleName; // Подробнее  на странице с профилем пользователя (ProfileDataPage)
+
+            if (lp.UserRole == 1) // 1 - роль администратора, по тз выходит так, что ему доступен весь функционал системы
+            {
+                // Это значит что все кнопки по умолчанию будут активны (видимы в окне меню)
+                // В иных проектах некоторые кнопки могут быть скрыты, если администратор не имеет доступа к этому функционалу по тз
+                // Для проверки недоступного функционала СИСТЕМНЫЙ администратор может иметь аккаунты со всеми уровнями доступа (ролями в системе)
+            }
+            if(lp.UserRole == 4) //Роль менеджера в БД представлена цифрой 4
+            {
+                UserButton.Visibility = Visibility.Collapsed; // Скрыть менеджеру доступ к просмотру пользователей, просмотр доступен толькот администратору
+                ChangeAccountButton.Visibility = Visibility.Collapsed; // Менеджер также не может создавать новые аккаунты
+                AddProductsButton.Visibility = Visibility.Collapsed; // Менеджер также не может добавлять новые товары
+            }    
+            if(lp.UserRole == 7) //Роль пользователя в БД представлена цифрой 7
+            {
+                UserButton.Visibility = Visibility.Collapsed; // Скрыть пользователю доступ к просмотру пользователей, просмотр доступен толькот администратору
+                ChangeAccountButton.Visibility = Visibility.Collapsed; // Пользователь также не может создавать новые аккаунты
+                AddProductsButton.Visibility = Visibility.Collapsed; // Пользователь также не может добавлять новые товары
+
+                // В окне авторизации для скрытия полей ввода использовано Visibility.Hidden (У элементов не было общего макета)
+                // В случае с кнопками в меню Visibility.Hidden оставит пустое пространство на местах скрытых кнопок
+                // Visibility.Collapsed помимо скрытия кнопки исключит её разметку из макета и пустого пространства не будет
+            }
+            // Представленная выше конструкция из условий позволяет разместить в одном окне меню(MenuWindow) функционал всех пользователей приложения
+            // Ролей 
+        }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFrame.Navigate(new ProfileDataPage());
+        }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFrame.Navigate(new UserDataPage());
+
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+        private void ChangeAccountButton_Click(object sender, RoutedEventArgs e) // Кнопка сменить аккаунт возвращает на окно авторизации
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
+            this.Close();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFrame.Navigate(new SettingsPage());
+        }
+
+        private void ProductsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFrame.Navigate(new SettingsPage());
+        }
+
+        private void AddProductsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RegistrationUserButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

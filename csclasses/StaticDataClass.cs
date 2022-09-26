@@ -8,7 +8,7 @@ namespace OOOCutlery.csclasses
 {
     public static class StaticDataClass // Публичный статичный класс для хранения данных
     {
-        public static int id = 0; // Переменная для хранения id
-
+        public static int id; // Переменная для хранения id
+        public static int role; // 
     }
 }

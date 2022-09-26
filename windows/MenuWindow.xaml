@@ -5,13 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOOCutlery.windows"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="450" Width="800">
+        Title="MenuWindow" Height="940" Width="1480" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
-        <StackPanel Grid.Row="1" Margin="20" HorizontalAlignment="Left">
-            <Label Height="30" Content="Имя" Width="300" ></Label>
-            <Label Height="30" Width="300" Name="NameLabel"></Label>
-            <Label Height="30" Content="Фамилия" Width="300" ></Label>
-            <Label Height="30" Width="300" Name="SurnameLabel"></Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <Border CornerRadius="5" Margin="980,0,0,870" Grid.Column="1">
+            <Border.Background >
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA2A2A2" Offset="0"/>
+                    <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.RowSpan="2" CornerRadius="5"   Grid.Row="1" Grid.ColumnSpan="2" Margin="20 40 0 0">
+            <Border.Background >
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE8E8E8" Offset="0"/>
+                    <GradientStop Color="#FFD4D4D4" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border CornerRadius="5" Grid.ColumnSpan="1" Margin="278,65,0,25">
+            <Border.Background >
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA2A2A2" Offset="0"/>
+                    <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border CornerRadius="5" Grid.ColumnSpan="1" Margin="45,200,25,738" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Border.Background >
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA2A2A2" Offset="0"/>
+                    <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <StackPanel>
+            <StackPanel VerticalAlignment="Top" Margin="40 50 0 0" Orientation="Horizontal">
+                <Button Width="80" Height="80" Margin="10 0 0 0"></Button>
+                <StackPanel Margin="10 10 10 10">
+                    <Label Content="Имя" FontSize="24" Name="NameLabel"></Label>
+                    <Label Content="Фамилия" FontSize="24" Name="SurnameLabel"></Label>
+                </StackPanel>
+
+            </StackPanel>
+            <Label Content="Назначение" FontSize="20" Margin="20 0 0 0" HorizontalAlignment="Center" Name="RoleLabel" FontFamily="Microsoft JhengHei" ></Label>
+            <StackPanel>
+
+                <Button Width="220"  Margin="25 40 0 20" Background="{x:Null}" Content="Профиль" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="ProfileButton" Click="ProfileButton_Click"/>
+
+                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Пользователи" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="UserButton" Click="UserButton_Click"/>
+
+                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Регистрация" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="RegistrationUserButton" Click="RegistrationUserButton_Click" />
+
+                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Товары" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="ProductsButton" Click="ProductsButton_Click"/>
+
+                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Добавить &#xa;   товар" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="AddProductsButton" Click="AddProductsButton_Click"/>
+
+                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Настройки" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="SettingsButton" Click="SettingsButton_Click"/>
+
+
+
+            </StackPanel>
+
         </StackPanel>
+
+        <Button Width="170"  Margin="25 0 0 40" Background="{x:Null}" Content="Сменить аккаунт" Foreground="#FFCD0000" FontSize="20" VerticalAlignment="Bottom" x:Name="ChangeAccountButton" Click="ChangeAccountButton_Click"></Button>
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Orientation="Horizontal">
+
+            <Button Margin="0 5 0 0" Height="30"   Width="100" Content="Свернуть"  Background="#FFA6A6A6"  FontSize="20" Click="Button_Click" >
+
+            </Button>
+            <Button Margin="15 5 10 0" Height="30"  Width="80" Content="Выйти"  VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Background="#FFA6A6A6" Foreground="#FFCD0000" FontSize="20" x:Name="ExitButton" Click="ExitButton_Click">
+
+            </Button>
+        </StackPanel>
+        <Frame NavigationUIVisibility = "Hidden" x:Name = "MenuFrame" Grid.Column="1"  Margin="10,50,10,10" Height=" 880"/>
     </Grid>
 </Window>
