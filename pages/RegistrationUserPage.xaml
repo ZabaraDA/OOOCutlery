@@ -1,0 +1,70 @@
+﻿<Page x:Class="OOOCutlery.pages.RegistrationUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OOOCutlery.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1100" d:DesignWidth="1100"
+      Title="RegistrationUserPage">
+
+    <Grid>
+        <Label Content="Регистрация нового пользователя" FontSize="36" Margin="0 20 0 0" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiBold SemiCondensed"></Label>
+        <StackPanel>
+            <StackPanel Margin="0 100 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="470">
+                <StackPanel Width="350">
+                    <Label Height="40" Width="250" Content="Персональные данные" FontSize="22" HorizontalAlignment="Center" FontFamily="Yu Gothic UI Semibold" Margin="10"></Label>
+                    <Label Height="40" Width="200" Content="Имя"></Label>
+                    <TextBox  Height="40" Width="200" Name="NameBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Фамилия"></Label>
+                    <TextBox  Height="40" Width="200" Name="FornameBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Дата рождения" ></Label>
+                    <DatePicker  Height="40" Width="200" Background="White" BorderBrush="#FF888888" FontSize="20" Name="BrithBox" HorizontalContentAlignment="Center"></DatePicker>
+                    <Label Height="40" Width="200" Content="Адресс" ></Label>
+                    <TextBox  Height="40" Width="200" Name="AddressBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Пол" ></Label>
+                    <ComboBox  Height="40" Width="200" Name="GenderBox" HorizontalContentAlignment="Center">
+
+                        <ComboBoxItem Content="Не выбрано" IsSelected="True" Name="V" />
+                        <ComboBoxItem Content="Мужской"  Name="V0"/>
+                        <ComboBoxItem Content="Женский" Name="V1"/>
+
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Width="300">
+                    <Label Height="40" Content="Учётная запись" FontSize="22" HorizontalAlignment="Center"  FontFamily="Yu Gothic UI Semibold" Margin="10"></Label>
+
+                    <Label Height="40" Width="200" Content="Логин" ></Label>
+                    <TextBox  Height="40" Width="200" Name="LoginBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Email"></Label>
+                    <TextBox  Height="40" Width="200" Name="EmailBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Пароль" Name="PasswordLabel"></Label>
+                    <PasswordBox  Height="40" Width="200" Name="PasswordBox" HorizontalContentAlignment="Center" SelectionOpacity="-2"/>
+                    <Label Height="40" Width="200" Content="Повторите пароль" Name="DoublePasswordLabel" ></Label>
+                    <PasswordBox  Height="40" Width="200" Name="DoublePasswordBox" HorizontalContentAlignment="Center"></PasswordBox>
+                    <Label Height="40" Width="200" Content="Фото профиля" ></Label>
+                    <Button  Height="40" Width="200" x:Name="AddPhotoButton" Content="Обзор" HorizontalContentAlignment="Center"></Button>
+
+                </StackPanel>
+            </StackPanel>
+            <Label Height="40" Width="300" Content="Предоставить уровень доступа" Margin="0 10 0 0"></Label>
+            <ComboBox  Height="40" Width="300" Name="AccessBox" HorizontalContentAlignment="Center">
+
+                <ComboBoxItem Content="Администратор" IsSelected="True" Name="V2" HorizontalContentAlignment="Center" />
+                <ComboBoxItem Content="Менеджер"  Name="V3" HorizontalContentAlignment="Center"/>
+                <ComboBoxItem Content="Пользователь" Name="V4" HorizontalContentAlignment="Center"/>
+
+            </ComboBox>
+
+            <Label Height="40" Content="Строка состояния" FontSize="22" HorizontalAlignment="Center"  FontFamily="Segoe UI" Margin="10" Foreground="#FFCC0000" Name="StatusBarBox"></Label>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+
+                <Button Content="Добавить" Width="200" Height="50" Margin="30 0 30 0" x:Name="AddUserButton"/>
+                <Button Content="Очистить" Width="200" Height="50" x:Name="ClearButton" ></Button>
+
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

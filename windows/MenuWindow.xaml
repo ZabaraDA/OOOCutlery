@@ -73,11 +73,11 @@
 
                 <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Товары" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="ProductsButton" Click="ProductsButton_Click"/>
 
-                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Добавить &#xa;   товар" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="AddProductsButton" Click="AddProductsButton_Click"/>
+                <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Добавить &#xa;    товар" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="AddProductsButton" Click="AddProductsButton_Click"/>
 
                 <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Настройки" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="SettingsButton" Click="SettingsButton_Click"/>
 
-
+                
 
             </StackPanel>
 

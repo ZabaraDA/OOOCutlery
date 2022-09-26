@@ -66,7 +66,7 @@ namespace OOOCutlery
             {
 
                 StaticDataClass.id = lp.UserID; // Присвоить переменной значение id равное UserID из найденной строки БД 
-                StaticDataClass.role = lp.UserRole; // Запомнить роль пользователя, в данном коде не используется, применятется для СУБД Workbench
+                StaticDataClass.role = lp.UserRole; // Запомнить роль пользователя, в данном коде не используется, можно применить для СУБД Workbench
                 CreateCaptchaWindow createCaptchaWindow = new CreateCaptchaWindow();
                 createCaptchaWindow.ShowDialog(); // Открыть окно с каптчей
                 // Метод ShowDialog() заблокирует возможность взаимодействия c окном авторизации пока открыто окно с каптчей
@@ -75,7 +75,7 @@ namespace OOOCutlery
             else if (incorrectly == false) // Если логин и пароль были верно введены с первого раза
             {
                 StaticDataClass.id = lp.UserID; // Присвоить переменной значение id равное UserID из найденной строки БД 
-                StaticDataClass.role = lp.UserRole; // Запомнить роль пользователя, в данном коде не используется, применяется для СУБД Workbench
+                StaticDataClass.role = lp.UserRole; // Запомнить роль пользователя, в данном коде не используется, можно применить для СУБД Workbench
                 MenuWindow menuWindow = new MenuWindow(); 
                 menuWindow.Show(); // Открыть главное меню
                 this.Close(); // И закрыть текущее окно

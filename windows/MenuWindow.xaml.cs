@@ -44,13 +44,13 @@ namespace OOOCutlery.windows
             if(lp.UserRole == 4) //Роль менеджера в БД представлена цифрой 4
             {
                 UserButton.Visibility = Visibility.Collapsed; // Скрыть менеджеру доступ к просмотру пользователей, просмотр доступен толькот администратору
-                ChangeAccountButton.Visibility = Visibility.Collapsed; // Менеджер также не может создавать новые аккаунты
+                RegistrationUserButton.Visibility = Visibility.Collapsed; // Менеджер также не может создавать новые аккаунты
                 AddProductsButton.Visibility = Visibility.Collapsed; // Менеджер также не может добавлять новые товары
             }    
             if(lp.UserRole == 7) //Роль пользователя в БД представлена цифрой 7
             {
                 UserButton.Visibility = Visibility.Collapsed; // Скрыть пользователю доступ к просмотру пользователей, просмотр доступен толькот администратору
-                ChangeAccountButton.Visibility = Visibility.Collapsed; // Пользователь также не может создавать новые аккаунты
+                RegistrationUserButton.Visibility = Visibility.Collapsed; // Пользователь также не может создавать новые аккаунты
                 AddProductsButton.Visibility = Visibility.Collapsed; // Пользователь также не может добавлять новые товары
 
                 // В окне авторизации для скрытия полей ввода использовано Visibility.Hidden (У элементов не было общего макета)
@@ -58,34 +58,42 @@ namespace OOOCutlery.windows
                 // Visibility.Collapsed помимо скрытия кнопки исключит её разметку из макета и пустого пространства не будет
             }
             // Представленная выше конструкция из условий позволяет разместить в одном окне меню(MenuWindow) функционал всех пользователей приложения
-            // Ролей 
+            // Однако можно поступить иначе
+            /* Ролей в системе по тз - 3, и их также можно разделить на три окна. Но такой подход будет не совсем корректен, так как:
+             * 1 - может появится неограниченное количество модулей (В данном случае ролей всего 3, но их может быть 10 и более. И каждому прийдётся создавать собственное окно);
+             * 2 - произойдёт дублирование кода - атака клонов ( К примеру:каждому окну потребуется строка подключения к БД, в общем меню применяется единожды);
+             * 3 - при изменении предметной области(появлении новых ролей) программисту прийдётся верстать новое окно, добавлять базовый функционал, а лишь потом писать новый.
+             * 
+             * Все эти моменты в совокупности увеличивают время разработки приложения, его итоговую стоимость, использование ресурсов системы приложением,
+             *  а также усложняет её дальнейшее сопровождение и модернизацию. (Нарушение принципов Бережливого производства)
+             */
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new ProfileDataPage());
+            MenuFrame.Navigate(new ProfileDataPage());  // Пользователь может посматривать свой профиль
         }
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new UserDataPage());
+            MenuFrame.Navigate(new UserDataPage()); // Администратор может просматривать данные пользователей
 
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            this.DragMove(); // Окно можно двигать зажатой кнопкой мыши
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Application.Current.Shutdown(); // Завершить работу приложения
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized; // Свернуть окно
         }
-        private void ChangeAccountButton_Click(object sender, RoutedEventArgs e) // Кнопка сменить аккаунт возвращает на окно авторизации
+        private void ChangeAccountButton_Click(object sender, RoutedEventArgs e) // Кнопка Сменить аккаунт возвращает на окно авторизации
         {
             MainWindow window = new MainWindow();
             window.Show();
@@ -94,22 +102,22 @@ namespace OOOCutlery.windows
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new SettingsPage());
+            MenuFrame.Navigate(new SettingsPage()); // Открыть страницу настроек
         }
 
         private void ProductsButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new SettingsPage());
+            MenuFrame.Navigate(new ProductDataPage()); // Открыть страницу с данными о товарах
         }
 
         private void AddProductsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuFrame.Navigate(new AddProductDataPage()); // Открыть страницу для добавления нового товара и редактирования имеющихся товаров
         }
 
         private void RegistrationUserButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuFrame.Navigate(new RegistrationUserPage()); // Открыть страницу для добавления новых пользователей и редактирования имеющихся учётных записей
         }
     }
 }

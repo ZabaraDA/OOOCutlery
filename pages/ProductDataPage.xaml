@@ -1,0 +1,17 @@
+﻿<Page x:Class="OOOCutlery.pages.ProductDataPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OOOCutlery.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1100" d:DesignWidth="1200"
+      Title="ProductDataPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 70">
+            <Label Content="Товаров нет!" HorizontalContentAlignment="Center" FontSize="36"></Label>
+            <Label Content="Но вы держитесь..." HorizontalContentAlignment="Center" FontSize="18"></Label>
+        </StackPanel>
+    </Grid>
+</Page>
