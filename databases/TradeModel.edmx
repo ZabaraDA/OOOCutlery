@@ -28,14 +28,14 @@
           </Key>
           <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ProductDescription" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ProductCategory" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProductDescription" Type="nvarchar(max)" />
+          <Property Name="ProductCategory" Type="nvarchar(max)" />
           <Property Name="ProductPhoto" Type="image" />
-          <Property Name="ProductManufacturer" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ProductCost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductManufacturer" Type="nvarchar(max)" />
+          <Property Name="ProductCost" Type="decimal" Precision="19" Scale="4" />
           <Property Name="ProductDiscountAmount" Type="tinyint" />
-          <Property Name="ProductQuantityInStock" Type="int" Nullable="false" />
-          <Property Name="ProductStatus" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProductQuantityInStock" Type="int" />
+          <Property Name="ProductStatus" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -174,14 +174,14 @@
           </Key>
           <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ProductPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductManufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductManufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ProductDiscountAmount" Type="Byte" />
-          <Property Name="ProductQuantityInStock" Type="Int32" Nullable="false" />
-          <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductQuantityInStock" Type="Int32" />
+          <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="Self.OrderProduct" FromRole="Product" ToRole="Order" />
         </EntityType>
         <EntityType Name="Role">
@@ -226,7 +226,7 @@
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TradeEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TradeEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -249,7 +249,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище TradeModelContainer" CdmEntityContainer="TradeEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TradeModelContainer" CdmEntityContainer="TradeEntities2">
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="TradeModel.Order">
               <MappingFragment StoreEntitySet="Order">

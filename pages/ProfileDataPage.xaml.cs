@@ -19,7 +19,7 @@ namespace OOOCutlery.pages
 {
     public partial class ProfileDataPage : Page // Страница профиля пользователя
     {
-        TradeEntities1 tradeEntities = new TradeEntities1();
+        TradeEntities2 tradeEntities = new TradeEntities2();
         public ProfileDataPage()
         {
             InitializeComponent();

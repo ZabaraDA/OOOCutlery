@@ -65,32 +65,32 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="csclasses\StaticDataClass.cs" />
-    <Compile Include="databases\DatabasesModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabasesModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="databases\DatabasesModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabasesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="databases\DatabasesModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabasesModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="databases\Order.cs">
-      <DependentUpon>DatabasesModel.tt</DependentUpon>
+      <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="databases\Product.cs">
-      <DependentUpon>DatabasesModel.tt</DependentUpon>
+      <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="databases\Role.cs">
-      <DependentUpon>DatabasesModel.tt</DependentUpon>
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="databases\TradeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="databases\TradeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="databases\TradeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="databases\User.cs">
-      <DependentUpon>DatabasesModel.tt</DependentUpon>
+      <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pages\AddProductDataPage.xaml.cs">
       <DependentUpon>AddProductDataPage.xaml</DependentUpon>
@@ -186,12 +186,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="databases\DatabasesModel.edmx">
+    <EntityDeploy Include="databases\TradeModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabasesModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TradeModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="databases\DatabasesModel.edmx.diagram">
-      <DependentUpon>DatabasesModel.edmx</DependentUpon>
+    <None Include="databases\TradeModel.edmx.diagram">
+      <DependentUpon>TradeModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -202,21 +202,22 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="databases\TradeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+      <LastGenOutput>TradeModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="databases\TradeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeModel.edmx</DependentUpon>
+      <LastGenOutput>TradeModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="databases\DatabasesModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabasesModel.edmx</DependentUpon>
-      <LastGenOutput>DatabasesModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="databases\DatabasesModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabasesModel.edmx</DependentUpon>
-      <LastGenOutput>DatabasesModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="windows\images\captcha2.png" />
     <Resource Include="windows\images\captcha1.png" />
   </ItemGroup>

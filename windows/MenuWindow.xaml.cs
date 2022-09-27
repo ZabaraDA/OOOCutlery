@@ -23,7 +23,7 @@ namespace OOOCutlery.windows
     /// </summary>
     public partial class MenuWindow : Window // Окно главного меню
     {
-        TradeEntities1 tradeEntities = new TradeEntities1();
+        TradeEntities2 tradeEntities = new TradeEntities2();
         
         public MenuWindow()
         {

@@ -77,8 +77,6 @@
 
                 <Button Width="220"  Margin="25 0 0 20" Background="{x:Null}" Content="Настройки" Foreground="Black" FontSize="36" FontFamily="Sylfaen" TextOptions.TextHintingMode="Fixed" x:Name="SettingsButton" Click="SettingsButton_Click"/>
 
-                
-
             </StackPanel>
 
         </StackPanel>
@@ -95,5 +93,6 @@
             </Button>
         </StackPanel>
         <Frame NavigationUIVisibility = "Hidden" x:Name = "MenuFrame" Grid.Column="1"  Margin="10,50,10,10" Height=" 880"/>
+        
     </Grid>
 </Window>

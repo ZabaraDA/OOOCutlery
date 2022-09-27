@@ -22,7 +22,7 @@ namespace OOOCutlery
   
     public partial class MainWindow : Window // Окно авторизации
     {
-        TradeEntities1 tradeEntities = new TradeEntities1();
+        TradeEntities2 tradeEntities = new TradeEntities2();
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); // Для блокировки входа на определённое время нужно обратится к таймеру
         bool incorrectly = false; // Логическая переменная, которая определяет был ли допущен неверный ввод логина или пароля
         int timerTick = 10; // Время блокировки после неверного ввода 

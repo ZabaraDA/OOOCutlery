@@ -9,6 +9,43 @@
       Title="AddProductDataPage">
 
     <Grid>
-        
+        <Label Content="Добавление нового товара" FontSize="36" Margin="0 20 0 0" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiBold SemiCondensed"></Label>
+        <StackPanel>
+            <StackPanel Margin="0 100 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="470">
+                <StackPanel Width="350">
+ 
+                    <Label Height="40" Width="200" Content="Имя"></Label>
+                    <TextBox  Height="40" Width="200" Name="NameBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Аритикль"></Label>
+                    <TextBox  Height="40" Width="200" Name="ArticleBox" HorizontalContentAlignment="Center"></TextBox>
+
+                      
+
+                    
+                </StackPanel>
+                <StackPanel Width="300">
+                   
+
+                    <Label Height="40" Width="200" Content="Фото" ></Label>
+                    <Button  Height="40" Width="200" Name="AddPhotoButton" HorizontalContentAlignment="Center" Content="Обзор" Click="AddPhotoButton_Click"></Button>
+                    <Image Height="200" Width="200" Name="ProductImage" ></Image>
+                    <Label Height="40" Width="200"  Name="ImageNameLabel"></Label>
+                </StackPanel>
+            </StackPanel>
+            
+
+            <Label Height="40" Content="Строка состояния" FontSize="22" HorizontalAlignment="Center"  FontFamily="Segoe UI" Margin="10" Foreground="#FFCC0000" Name="StatusBarBox"></Label>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+
+                <Button Content="Добавить" Width="200" Height="50" Margin="30 0 30 0" x:Name="AddProductButton" Click="AddProductButton_Click"/>
+                <Button Content="Очистить" Width="200" Height="50" Margin="0 0 30 0" x:Name="ClearButton" Click="ClearButton_Click"></Button>
+                <TextBox  Height="40" Width="200" Name="PrewievImageBox" HorizontalContentAlignment="Center"></TextBox>
+
+                <Button Content="Показать изображение" Width="200" Height="50" x:Name="ImagePrewievButton" Click="ImagePrewievButton_Click"></Button>
+
+
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
