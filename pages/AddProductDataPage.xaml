@@ -14,14 +14,19 @@
             <StackPanel Margin="0 100 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="470">
                 <StackPanel Width="350">
  
-                    <Label Height="40" Width="200" Content="Имя"></Label>
-                    <TextBox  Height="40" Width="200" Name="NameBox" HorizontalContentAlignment="Center"></TextBox>
-                    <Label Height="40" Width="200" Content="Аритикль"></Label>
-                    <TextBox  Height="40" Width="200" Name="ArticleBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Название"></Label>
+                    <TextBox  Height="40" Width="200" Name="NameTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Аритикул"></Label>
+                    <TextBox  Height="40" Width="200" Name="ArticleTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Описание"></Label>
+                    <TextBox  Height="40" Width="200" Name="DescriptionTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Стоимость(РУБ)"></Label>
+                    <TextBox  Height="40" Width="200" Name="CostTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Количество на складе(шт)"></Label>
+                    <TextBox  Height="40" Width="200" Name="QuantityInStockTextBox" HorizontalContentAlignment="Center"></TextBox>
 
-                      
 
-                    
+
                 </StackPanel>
                 <StackPanel Width="300">
                    
@@ -29,7 +34,11 @@
                     <Label Height="40" Width="200" Content="Фото" ></Label>
                     <Button  Height="40" Width="200" Name="AddPhotoButton" HorizontalContentAlignment="Center" Content="Обзор" Click="AddPhotoButton_Click"></Button>
                     <Image Height="200" Width="200" Name="ProductImage" ></Image>
-                    <Label Height="40" Width="200"  Name="ImageNameLabel"></Label>
+                    <!--<Label Height="40" Width="200"  Name="ImageNameLabel"></Label>-->
+                    <Label Content="Производитель"  Height="40" Width="200"></Label>
+                    <ComboBox Name="ManufacturerComboBox"  Height="40" Width="200"></ComboBox>
+                    <Label Content="Категория товара"  Height="40" Width="200"></Label>
+                    <ComboBox Name="CategoryComboBox"  Height="40" Width="200"></ComboBox>
                 </StackPanel>
             </StackPanel>
             
@@ -40,10 +49,6 @@
 
                 <Button Content="Добавить" Width="200" Height="50" Margin="30 0 30 0" x:Name="AddProductButton" Click="AddProductButton_Click"/>
                 <Button Content="Очистить" Width="200" Height="50" Margin="0 0 30 0" x:Name="ClearButton" Click="ClearButton_Click"></Button>
-                <TextBox  Height="40" Width="200" Name="PrewievImageBox" HorizontalContentAlignment="Center"></TextBox>
-
-                <Button Content="Показать изображение" Width="200" Height="50" x:Name="ImagePrewievButton" Click="ImagePrewievButton_Click"></Button>
-
 
             </StackPanel>
         </StackPanel>

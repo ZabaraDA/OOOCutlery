@@ -6,12 +6,139 @@
       xmlns:local="clr-namespace:OOOCutlery.pages"
       mc:Ignorable="d" 
       d:DesignHeight="1100" d:DesignWidth="1200"
-      Title="ProductDataPage">
+      Title="ProductDataPage" FontSize="20">
 
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 70">
-            <Label Content="Товаров нет!" HorizontalContentAlignment="Center" FontSize="36"></Label>
-            <Label Content="Но вы держитесь..." HorizontalContentAlignment="Center" FontSize="18"></Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Name="ProductDataStackPanel">
+        <ListView Name="ProductListView" Background="Transparent" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="220">
+                        <Border Grid.RowSpan="0" CornerRadius="5"    Width="845" Name="BackgroundBorder">
+                            <Border.Background >
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9A6A6" Offset="0"/>
+                                    <GradientStop Color="#FFB9B9B9" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border  CornerRadius="5" HorizontalAlignment="Left" Height="190"  Width="190" Margin="15">
+                            <Border.Background >
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border  CornerRadius="5" HorizontalAlignment="Right" Height="150"  Width="150" Margin="15">
+                            <Border.Background >
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF5B5B5B" Offset="0"/>
+
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Grid.Row="0" Width="180" Stretch="Uniform" Margin="20" Height="200">
+                            <Image.Source>
+                                <Binding Path="ProductPhoto">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>images/Заглушка.png</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                              
+                            <StackPanel Margin="10" Width="450">
+                                
+                                <Label Content="{Binding Path=ProductName}" FontSize="24" FontWeight="Bold"></Label>
+                                <Label Content="{Binding Path=ProductDescription}" FontSize="14" ></Label>
+                                <Label Content="{Binding Path=Manufacturer.ManufacturerName}" ContentStringFormat="{}Производитель: {0}"></Label>
+                                <Label Content="{Binding Path=ProductCost}" ContentStringFormat="{}Стоимость: {0} РУБ"></Label>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+
+                                <Label Content="В наличии:" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+                                <Label Width="100" Height="100"  Content="{Binding Path=ProductQuantityInStock}" FontSize="36" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                            </StackPanel>
+                            
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            
+        </StackPanel>
+        <StackPanel Grid.Column="1" Name="ProductEditStackPanel">
+            <StackPanel>
+                <Label Content="Фильтры" ></Label>
+                <Label Content="Поиск по названию"></Label>
+                <TextBox Name="NameSearchTextBox" TextChanged="NameSearchTextBox_TextChanged"></TextBox>
+                <Label Content="Поиск по производителю"></Label>
+                <ComboBox Name="ManufacturerSearchComboBox" SelectionChanged="ManufacturerSearchComboBox_SelectionChanged" ></ComboBox>
+                <Label Content="Поиск по категории"></Label>
+                <ComboBox Name="CategorySearchComboBox" SelectionChanged="CategorySearchComboBox_SelectionChanged" ></ComboBox>
+                <Label Content="Фото"></Label>
+                <Label Content="Есть в наличии"></Label>
+                <Button Width="200" Height="40" Content="Сбросить фильтры" x:Name="ClearFilterButton" Click="ClearFilterButton_Click"></Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Label Content="Редактировать"></Label>
+                <Button Width="100" Height="40" Content="Добавить" x:Name="AddProductButton" Click="AddProductButton_Click"></Button>
+                <Button Width="100" Height="40" Content="Удалить"  x:Name="DeleteProductButton" Click="DeleteProductButton_Click" Margin="10"></Button>
+                <Button Width="100" Height="40" Content="Изменить" x:Name="ChangeParametersButton" Click="ChangeParametersButton_Click"></Button>
+
+
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Name="AddNewProductStackPanel" Visibility="Collapsed" Grid.ColumnSpan="2">
+        <Label Content="Добавление нового товара" FontSize="36" Margin="0 20 0 0" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiBold SemiCondensed"></Label>
+        <StackPanel>
+            <StackPanel Margin="0 100 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="470">
+                <StackPanel Width="350">
+
+                    <Label Height="40" Width="200" Content="Имя"></Label>
+                    <TextBox  Height="40" Width="200" Name="NameBox" HorizontalContentAlignment="Center"></TextBox>
+                    <Label Height="40" Width="200" Content="Аритикль"></Label>
+                    <TextBox  Height="40" Width="200" Name="ArticleBox" HorizontalContentAlignment="Center"></TextBox>
+
+
+
+
+                </StackPanel>
+                <StackPanel Width="300">
+
+
+                    <Label Height="40" Width="200" Content="Фото" ></Label>
+                    <Button  Height="40" Width="200" Name="AddPhotoButton" HorizontalContentAlignment="Center" Content="Обзор" ></Button>
+                    <Image Height="200" Width="200" Name="ProductImage" ></Image>
+                    <Label Height="40" Width="200"  Name="ImageNameLabel"></Label>
+                </StackPanel>
+            </StackPanel>
+
+
+            <Label Height="40" Content="Строка состояния" FontSize="22" HorizontalAlignment="Center"  FontFamily="Segoe UI" Margin="10" Foreground="#FFCC0000" Name="StatusBarBox"></Label>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+
+                <Button Content="Добавить" Width="200" Height="50" Margin="30 0 30 0" x:Name="AddNewProductButton" />
+                <Button Content="Очистить" Width="200" Height="50" Margin="0 0 30 0" x:Name="ClearButton" ></Button>
+                <TextBox  Height="40" Width="200" Name="PrewievImageBox" HorizontalContentAlignment="Center"></TextBox>
+
+                <Button Content="Показать изображение" Width="200" Height="50" x:Name="ImagePrewievButton" ></Button>
+
+
+            </StackPanel>
+        </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
+
+

@@ -22,13 +22,18 @@ namespace OOOCutlery
   
     public partial class MainWindow : Window // Окно авторизации
     {
-        TradeEntities2 tradeEntities = new TradeEntities2();
+        TradeEntities tradeEntities = new TradeEntities();
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); // Для блокировки входа на определённое время нужно обратится к таймеру
         bool incorrectly = false; // Логическая переменная, которая определяет был ли допущен неверный ввод логина или пароля
         int timerTick = 10; // Время блокировки после неверного ввода 
         public MainWindow()
         {
             InitializeComponent();
+
+            //InstitutionBox.ItemsSource = db.institution.ToList();
+            RoleComboBox.ItemsSource = tradeEntities.Role.ToList();
+            RoleComboBox.DisplayMemberPath = "RoleName";
+            RoleComboBox.SelectedIndex = 0;
 
             dispatcherTimer.Interval = TimeSpan.FromSeconds(1); // Определяет интервал выполнения для таймера ( в данный момент 1 секунда)
             dispatcherTimer.Tick += DispatcherTimer_Tick; // Каждая иттерация таймера после завершения интервала в 1 секунду обращается

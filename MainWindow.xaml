@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOOCutlery"
         mc:Ignorable="d"
-        Title="MainWindow" Height="670" Width="500" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" FontSize="20">
+        Title="MainWindow" Height="670" Width="500" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" FontSize="20" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
@@ -28,10 +28,8 @@
         <Label Content="Авторизация" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" Margin="138,25,138,0" Height="56" Width="224"></Label>
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,10,10" Height="270" Name="AuthorizationStackPanel">
             <Label Content="Войти как:" Width="250" FontSize="18"/>
-            <ComboBox Width="250" FontSize="18" Height="35" Margin="0 0 0 30" VerticalContentAlignment="Center" x:Name="RegBox" HorizontalContentAlignment="Center">
-                <ComboBoxItem Content="Администратор" IsSelected="True" Name="V0"/>
-                <ComboBoxItem Content="Менеджер" Name="V1"/>
-                <ComboBoxItem Content="Клиент" Name="V2"/>
+            <ComboBox Width="250" FontSize="18" Height="35" Margin="0 0 0 30" VerticalContentAlignment="Center" x:Name="RoleComboBox" HorizontalContentAlignment="Center">
+                
 
 
             </ComboBox>

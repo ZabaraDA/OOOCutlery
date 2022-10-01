@@ -37,7 +37,7 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Border CornerRadius="5" Grid.ColumnSpan="1" Margin="45,200,25,738" RenderTransformOrigin="0.5,0.5">
+        <Border CornerRadius="5" Grid.ColumnSpan="1" Margin="45,200,25,738" RenderTransformOrigin="0.5,0.5" Height="1">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>

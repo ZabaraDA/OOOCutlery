@@ -13,10 +13,10 @@ namespace OOOCutlery.databases
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TradeEntities2 : DbContext
+    public partial class TradeEntities : DbContext
     {
-        public TradeEntities2()
-            : base("name=TradeEntities2")
+        public TradeEntities()
+            : base("name=TradeEntities")
         {
         }
     
@@ -25,6 +25,8 @@ namespace OOOCutlery.databases
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturer { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }

@@ -65,6 +65,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="csclasses\StaticDataClass.cs" />
+    <Compile Include="databases\Category.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="databases\Manufacturer.cs">
+      <DependentUpon>TradeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="databases\Order.cs">
       <DependentUpon>TradeModel.tt</DependentUpon>
     </Compile>
@@ -203,6 +209,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="pages\images\Заглушка.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\images\captcha2.png" />
+    <Resource Include="windows\images\captcha1.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="databases\TradeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TradeModel.edmx</DependentUpon>
@@ -213,13 +229,6 @@
       <DependentUpon>TradeModel.edmx</DependentUpon>
       <LastGenOutput>TradeModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="windows\images\captcha2.png" />
-    <Resource Include="windows\images\captcha1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

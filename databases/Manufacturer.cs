@@ -12,28 +12,18 @@ namespace OOOCutlery.databases
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Manufacturer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public Manufacturer()
         {
-            this.Order = new HashSet<Order>();
+            this.Product = new HashSet<Product>();
         }
     
-        public string ProductArticleNumber { get; set; }
-        public string ProductName { get; set; }
-        public string ProductDescription { get; set; }
-        public int ProductCategory { get; set; }
-        public byte[] ProductPhoto { get; set; }
-        public int ProductManufacturer { get; set; }
-        public Nullable<decimal> ProductCost { get; set; }
-        public Nullable<byte> ProductDiscountAmount { get; set; }
-        public Nullable<int> ProductQuantityInStock { get; set; }
-        public string ProductStatus { get; set; }
+        public int ManufacturerID { get; set; }
+        public string ManufacturerName { get; set; }
     
-        public virtual Category Category { get; set; }
-        public virtual Manufacturer Manufacturer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }
