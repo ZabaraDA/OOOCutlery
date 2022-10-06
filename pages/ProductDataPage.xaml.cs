@@ -20,14 +20,16 @@ namespace OOOCutlery.pages
     
     public partial class ProductDataPage : Page // Страница для просмотра товаров
     {
-        TradeEntities tradeEntities2 = new TradeEntities();
-       
+        TradeEntities tradeEntities = new TradeEntities();
+        
         public ProductDataPage()
         {
             InitializeComponent();
-
-
-            var itemsManufacturerList = tradeEntities2.Manufacturer.ToList(); // Прочитать(ToList()) все элементы таблицы Manufacturer(Производители) и сохранить в переменную itemsManufacturerList          
+            
+            InStockComboBox.SelectedIndex = 0; 
+            CostSearchComboBox.SelectedIndex = 0;
+            PhotoSearchComboBox.SelectedIndex = 0;
+            var itemsManufacturerList = tradeEntities.Manufacturer.ToList(); // Прочитать(ToList()) все элементы таблицы Manufacturer(Производители) и сохранить в переменную itemsManufacturerList          
             // Для правильной фильтрации товаров необходимо создать строку с индексом(id) 0, которая отменит фильтрацию по производителям(Значение по умолчанию)
             itemsManufacturerList.Insert(0, new Manufacturer 
             {
@@ -38,7 +40,7 @@ namespace OOOCutlery.pages
             ManufacturerSearchComboBox.ItemsSource = itemsManufacturerList.ToList(); // Источник данных для ManufacturerSearchComboBox
             ManufacturerSearchComboBox.SelectedIndex = 0; // При инициализации выбрать первый элемент списка (Все производители)
 
-            var itemsCategoryList = tradeEntities2.Category.ToList(); 
+            var itemsCategoryList = tradeEntities.Category.ToList(); 
             itemsCategoryList.Insert(0, new Category
             {
                 CategoryName = "Все категории"
@@ -50,6 +52,7 @@ namespace OOOCutlery.pages
             // Тот же способ для инициализации элементов CategorySearchComboBox(Категории товаров)
 
             SearchProductDataUpdate(); // Вызвать метод, который выполняет фильтрацию данных и вывод в ListView
+            
         }
 
 
@@ -57,15 +60,17 @@ namespace OOOCutlery.pages
         {
             var productItem = ProductListView.SelectedItem as Product; // Сохранить в переменную выбранный товар
 
-            tradeEntities2.Product.Remove(productItem); // Удалить товар из таблицы базы данных
+            tradeEntities.Product.Remove(productItem); // Удалить товар из таблицы базы данных
 
-            tradeEntities2.SaveChanges(); // Сохранить изменения в БД
+            tradeEntities.SaveChanges(); // Сохранить изменения в БД
             SearchProductDataUpdate(); // Вызвать метод, который выполняет фильтрацию данных и вывод в ListView
 
         }
         private void SearchProductDataUpdate()
         {
-            var itemProduct = tradeEntities2.Product.ToList(); // Записать в переменную все записи товаров из БД
+            var itemProduct = tradeEntities.Product.ToList(); // Записать в переменную все записи товаров из БД
+            int numberOfProducts = tradeEntities.Product.Count(); // Посчитать количество товаров
+            NumberOfProductsLabel.Content = numberOfProducts.ToString();
 
             if (NameSearchTextBox.Text != null && NameSearchTextBox.Text != "") // Если фильтр по имени не равен null, то
                 itemProduct = itemProduct.Where(x => x.ProductName.ToLower().Contains(NameSearchTextBox.Text.ToLower())).ToList();
@@ -81,28 +86,64 @@ namespace OOOCutlery.pages
                 itemProduct = itemProduct.Where(x => x.ProductCategory.Equals(CategorySearchComboBox.SelectedIndex)).ToList();
                 // Вывести все товары выбранной категории
             }
-
-            ProductListView.ItemsSource = itemProduct.ToList(); // Вывести отфильтрованные товары в KistView
-
+            if (InStockComboBox.SelectedIndex > 0)
+            {
+                if (InStockComboBox.SelectedIndex == 1)
+                {
+                    itemProduct = itemProduct.Where(x => x.ProductQuantityInStock != 0).ToList();
+                }
+                if (InStockComboBox.SelectedIndex == 2)
+                {
+                    itemProduct = itemProduct.Where(x => x.ProductQuantityInStock.Equals(0)).ToList();
+                }
+            }
+            if (CostSearchComboBox.SelectedIndex > 0)
+            {
+                if (CostSearchComboBox.SelectedIndex == 1)
+                {
+                    itemProduct = itemProduct.OrderBy(x => x.ProductCost).ToList();
+                }
+                if (CostSearchComboBox.SelectedIndex == 2)
+                {
+                    itemProduct = itemProduct.OrderByDescending(x => x.ProductCost).ToList();
+                }
+            }
+            if (MinimumCostTextBox.Text != null && MinimumCostTextBox.Text != "")
+                itemProduct = itemProduct.Where(x => x.ProductCost > Convert.ToDecimal(MinimumCostTextBox.Text)).ToList();
+            if (MaximumCostTextBox.Text != null && MaximumCostTextBox.Text != "")
+                itemProduct = itemProduct.Where(x => x.ProductCost < Convert.ToDecimal(MaximumCostTextBox.Text)).ToList();
+            if (PhotoSearchComboBox.SelectedIndex > 0)
+            {
+                if (PhotoSearchComboBox.SelectedIndex == 1)
+                {
+                    itemProduct = itemProduct.Where(x => x.ProductPhoto != null).ToList();
+                }
+                if (PhotoSearchComboBox.SelectedIndex == 2)
+                {
+                    var itemPhoto = itemProduct.Where(x => x.ProductPhoto != null).ToList();
+                    itemProduct = itemProduct.Except(itemPhoto).ToList();
+                }
+            }
+            numberOfProducts = itemProduct.Count(); // Посчитать количество товаров соответствующих критериям
+            FilterNumberOfProductsLabel.Content = numberOfProducts.ToString();
+            ProductListView.ItemsSource = itemProduct.ToList(); // Вывести отфильтрованные товары в ListView
+            
            
         }
 
         private void ChangeParametersButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var productItem = ProductListView.SelectedItem as Product;
+            NavigationService.Navigate(new AddProductDataPage(productItem));
         }
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e) // Кнопка для перехода на страницу добавления нового товара
         {
-            NavigationService.Navigate(new AddProductDataPage()); // Вывести страницу для добавления нового товара
+            NavigationService.Navigate(new AddProductDataPage(null)); // Вывести страницу для добавления нового товара
             // NavigationService позволяет обратиться к frame, который инициализировал текущую страницу
         }
 
-        private void NameSearchTextBox_TextChanged(object sender, TextChangedEventArgs e) // TextChanged выполняет код при кажом изменении NameSearchTextBox
-        {                                                                                 // (Изменение вводимого имени товара для фильтрации и поиска)
-            SearchProductDataUpdate(); // Вызвать метод, который выполняет фильтрацию данных и вывод в ListView
-            
-        }
+       
 
      
 
@@ -111,16 +152,19 @@ namespace OOOCutlery.pages
             ManufacturerSearchComboBox.SelectedIndex = 0; // "Все производители"
             CategorySearchComboBox.SelectedIndex = 0; // "Все производители"
             NameSearchTextBox.Text = null; // Все названия
+            InStockComboBox.SelectedIndex = 0;
+            CostSearchComboBox.SelectedIndex = 0;
+            MinimumCostTextBox.Text = null;
+            MaximumCostTextBox.Text = null;
             SearchProductDataUpdate();
         }
 
-        private void CategorySearchComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) // При каждом изменение CategorySearchComboBox выполнить код
+        private void SearchComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) // При каждом изменение CategorySearchComboBox выполнить код
         {
             SearchProductDataUpdate(); // Вызвать метод, который выполняет фильтрацию данных и вывод в ListView
         }
-
-        private void ManufacturerSearchComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) // При каждом изменение ManufacturerSearchComboBox выполнить код
-        {
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) // TextChanged выполняет код при кажом изменении NameSearchTextBox
+        {                                                                                 // (Изменение вводимого имени товара для фильтрации и поиска)
             SearchProductDataUpdate(); // Вызвать метод, который выполняет фильтрацию данных и вывод в ListView
         }
     }

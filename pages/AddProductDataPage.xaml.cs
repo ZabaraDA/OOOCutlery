@@ -16,8 +16,7 @@ using Microsoft.Win32; // Для OpenFileDialog
 using OOOCutlery.csclasses;
 using OOOCutlery.databases;
 using System.IO; //Для File.ReadAllBytes
-
-
+using System.Data.Entity.Migrations;
 
 namespace OOOCutlery.pages
 {
@@ -26,6 +25,7 @@ namespace OOOCutlery.pages
     {
         TradeEntities tradeEntities = new TradeEntities();
         OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "JPEG|*.jpg|PNG|*.png", ValidateNames = true, Multiselect = false };
+        byte[] productPhoto;
         // OpenFileDialog позволяет импортировать файлы в приложение через проводник
         // Filter определяет типы допустимых импортируемых файлов
         // ValidateNames = true допускает только допустимые имена файлов
@@ -36,20 +36,47 @@ namespace OOOCutlery.pages
         openFileDialog.ValidateNames = true;
         openFileDialog.Filter = "JPEG|*.jpg|PNG|*.png";
         */
-
-    public AddProductDataPage()
+        ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
+        public AddProductDataPage(Product productItem)
         {
-            InitializeComponent();
-            var itemsManufacturerList = tradeEntities.Manufacturer.ToList();
-            ManufacturerComboBox.DisplayMemberPath = "ManufacturerName";
-            ManufacturerComboBox.ItemsSource = itemsManufacturerList.ToList();
-            ManufacturerComboBox.SelectedIndex = 0;
             
-            var itemsCategoryList = tradeEntities.Category.ToList();
-            CategoryComboBox.DisplayMemberPath = "CategoryName";
-            CategoryComboBox.ItemsSource = itemsCategoryList.ToList();
-            CategoryComboBox.SelectedIndex = 0;
+            
+            
+            InitializeComponent();
+            DataContext = productItem;
 
+            if (productItem != null)
+            {
+                HeaderLabel.Content = "Изменить выбранный товар";
+                AddNewProductStackPanel.Visibility = Visibility.Collapsed;
+                ChangeProductStackPanel.Visibility = Visibility.Visible;
+                ManufacturerComboBox.SelectedIndex = productItem.ProductManufacturer - 1;
+                CategoryComboBox.SelectedIndex = productItem.ProductCategory - 1;
+                NameTextBox.Text = productItem.ProductName;
+                ArticleTextBox.Text = productItem.ProductArticleNumber;
+                QuantityInStockTextBox.Text = productItem.ProductQuantityInStock.ToString();
+                CostTextBox.Text = productItem.ProductCost.ToString();
+                ProductImage.Source = (ImageSource)imageSourceConverter.ConvertFrom(productItem.ProductPhoto);
+                DescriptionTextBox.Text = productItem.ProductDescription;
+                productPhoto = productItem.ProductPhoto;
+                ArticleTextBox.Visibility = Visibility.Collapsed;
+                ArticleLabel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ManufacturerComboBox.SelectedIndex = 0;
+                CategoryComboBox.SelectedIndex = 0;
+                productPhoto = null;
+            }
+            
+            
+            ManufacturerComboBox.ItemsSource = tradeEntities.Manufacturer.ToList();
+            ManufacturerComboBox.DisplayMemberPath = "ManufacturerName";
+            
+            
+            CategoryComboBox.ItemsSource = tradeEntities.Category.ToList();
+            CategoryComboBox.DisplayMemberPath = "CategoryName";
+            
         }
 
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e) // Кнопка добавления изображения
@@ -61,7 +88,10 @@ namespace OOOCutlery.pages
                 // В Label сохраняем путь к файлу в виде текста
                 ProductImage.Source = new BitmapImage(new Uri( openFileDialog.FileName, UriKind.Absolute)); // Источником изображения для товара указываем путь к выбранному изображению
                 // UriKind.Absolute используется т.к. изображение загружается извне
-                
+
+                productPhoto = File.ReadAllBytes(openFileDialog.FileName);
+
+
             }
 
         }
@@ -71,6 +101,11 @@ namespace OOOCutlery.pages
             NameTextBox.Text = null;
             ArticleTextBox.Text = null;
             ProductImage.Source = null;
+            CostTextBox.Text = null;
+            QuantityInStockTextBox.Text = null;
+            DescriptionTextBox.Text = null;
+            ManufacturerComboBox.SelectedIndex = 0;
+            CategoryComboBox.SelectedIndex = 0;
         }
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e) // Кнопка добавления нового товара
@@ -82,20 +117,45 @@ namespace OOOCutlery.pages
             {
                 ProductArticleNumber = ArticleTextBox.Text, // Артикль товара
                 ProductName = NameTextBox.Text, // Наименование товара
-                ProductPhoto = File.ReadAllBytes(openFileDialog.FileName), // Импорт выбранного ранее изображения в БД
+                ProductPhoto = productPhoto, // Импорт выбранного ранее изображения в БД
                 // File.ReadAllBytes читает выбранное изображение по байтам (В базе данных изображение хранится массивом байт)
                 ProductDescription = DescriptionTextBox.Text, // Описание товара
                 ProductCost = Convert.ToDecimal(CostTextBox.Text), // Стоимость товара
                 ProductQuantityInStock = Convert.ToInt32(QuantityInStockTextBox.Text), // Количество товара на складе при первом поступлении
                 ProductCategory = CategoryComboBox.SelectedIndex + 1, // Категория товара
                 ProductManufacturer = ManufacturerComboBox.SelectedIndex + 1 // Производитель товара
-            }) ;
+            });
             tradeEntities.SaveChanges(); // После добавления новой сущности сохранить изменения
             }
             catch // Если при выполнении блока кода try{} произошла ошибка, то выполнить блок catch{}
             {
                 MessageBox.Show("Проверьте корретность ввода", "Введены неверные данные",  MessageBoxButton.OK); // Сообщение об ошибке пользователю
             }
+        }
+
+        private void ChangeProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+            tradeEntities.Product.AddOrUpdate( new Product()
+            {
+                ProductArticleNumber = ArticleTextBox.Text,
+                ProductName = NameTextBox.Text, // Наименование товара
+                
+                ProductPhoto = productPhoto, // Импорт выбранного ранее изображения в БД
+                // File.ReadAllBytes читает выбранное изображение по байтам (В базе данных изображение хранится массивом байт)
+                ProductDescription = DescriptionTextBox.Text, // Описание товара
+                ProductCost = Convert.ToDecimal(CostTextBox.Text), // Стоимость товара
+                ProductQuantityInStock = Convert.ToInt32(QuantityInStockTextBox.Text), // Количество товара на складе при первом поступлении
+                ProductCategory = CategoryComboBox.SelectedIndex + 1, // Категория товара
+                ProductManufacturer = ManufacturerComboBox.SelectedIndex + 1 // Производитель товара
+            });
+            tradeEntities.SaveChanges();
+        }
+
+        private void CanselButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductDataPage());
         }
 
         //private void ImagePrewievButton_Click(object sender, RoutedEventArgs e) // Показать изображения из базы данных

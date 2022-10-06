@@ -9,47 +9,55 @@
       Title="AddProductDataPage">
 
     <Grid>
-        <Label Content="Добавление нового товара" FontSize="36" Margin="0 20 0 0" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiBold SemiCondensed"></Label>
+        <Label Content="Добавление нового товара" FontSize="36" Margin="0 20 0 0" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiBold SemiCondensed" Name="HeaderLabel"></Label>
         <StackPanel>
             <StackPanel Margin="0 100 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="470">
                 <StackPanel Width="350">
- 
+
                     <Label Height="40" Width="200" Content="Название"></Label>
-                    <TextBox  Height="40" Width="200" Name="NameTextBox" HorizontalContentAlignment="Center"></TextBox>
-                    <Label Height="40" Width="200" Content="Аритикул"></Label>
-                    <TextBox  Height="40" Width="200" Name="ArticleTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <TextBox  Height="40" Width="200" Name="NameTextBox" HorizontalContentAlignment="Center" ></TextBox>
+                    <!--Text="{Binding Path=ProductName}"-->
+                    <Label Height="40" Width="200" Content="Аритикул" Name="ArticleLabel"></Label>
+                    <TextBox  Height="40" Width="200" Name="ArticleTextBox"  HorizontalContentAlignment="Center" ></TextBox>
+                    <!--Text="{Binding Path=ProductArticleNumber}"-->
                     <Label Height="40" Width="200" Content="Описание"></Label>
-                    <TextBox  Height="40" Width="200" Name="DescriptionTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <TextBox  Height="40" Width="200" Name="DescriptionTextBox" HorizontalContentAlignment="Center" ></TextBox>
+                    <!--Text="{Binding Path=ProductDescription}"-->
                     <Label Height="40" Width="200" Content="Стоимость(РУБ)"></Label>
-                    <TextBox  Height="40" Width="200" Name="CostTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <TextBox  Height="40" Width="200" Name="CostTextBox" HorizontalContentAlignment="Center" ></TextBox>
+                    <!--Text="{Binding Path=ProductCost}"-->
                     <Label Height="40" Width="200" Content="Количество на складе(шт)"></Label>
                     <TextBox  Height="40" Width="200" Name="QuantityInStockTextBox" HorizontalContentAlignment="Center"></TextBox>
+                    <!--Text="{Binding Path=ProductQuantityInStock}"-->
 
 
 
                 </StackPanel>
                 <StackPanel Width="300">
-                   
+
 
                     <Label Height="40" Width="200" Content="Фото" ></Label>
                     <Button  Height="40" Width="200" Name="AddPhotoButton" HorizontalContentAlignment="Center" Content="Обзор" Click="AddPhotoButton_Click"></Button>
-                    <Image Height="200" Width="200" Name="ProductImage" ></Image>
-                    <!--<Label Height="40" Width="200"  Name="ImageNameLabel"></Label>-->
                     <Label Content="Производитель"  Height="40" Width="200"></Label>
                     <ComboBox Name="ManufacturerComboBox"  Height="40" Width="200"></ComboBox>
                     <Label Content="Категория товара"  Height="40" Width="200"></Label>
                     <ComboBox Name="CategoryComboBox"  Height="40" Width="200"></ComboBox>
+                    <Image Height="200" Width="200" x:Name="ProductImage" >
+                        
+                    </Image>
                 </StackPanel>
             </StackPanel>
-            
 
-            <Label Height="40" Content="Строка состояния" FontSize="22" HorizontalAlignment="Center"  FontFamily="Segoe UI" Margin="10" Foreground="#FFCC0000" Name="StatusBarBox"></Label>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Label Height="40" Content="Строка состояния" FontSize="22" HorizontalAlignment="Center" FontFamily="Segoe UI" Margin="10" Foreground="#FFCC0000" Name="StatusBarBox"></Label>
 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Name="AddNewProductStackPanel" Visibility="Visible">
                 <Button Content="Добавить" Width="200" Height="50" Margin="30 0 30 0" x:Name="AddProductButton" Click="AddProductButton_Click"/>
                 <Button Content="Очистить" Width="200" Height="50" Margin="0 0 30 0" x:Name="ClearButton" Click="ClearButton_Click"></Button>
-
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="ChangeProductStackPanel" Visibility="Collapsed">
+                <Button Content="Изменить" Width="200" Height="50" Margin="30 0 30 0" x:Name="ChangeProductButton"  Click="ChangeProductButton_Click"/>
+                <Button Content="Отменить" Width="200" Height="50" Margin="0 0 30 0" x:Name="CanselButton" Click="CanselButton_Click"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -112,7 +112,7 @@ namespace OOOCutlery.windows
 
         private void AddProductsButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new AddProductDataPage()); // Открыть страницу для добавления нового товара и редактирования имеющихся товаров
+            MenuFrame.Navigate(new AddProductDataPage(null)); // Открыть страницу для добавления нового товара и редактирования имеющихся товаров
         }
 
         private void RegistrationUserButton_Click(object sender, RoutedEventArgs e)

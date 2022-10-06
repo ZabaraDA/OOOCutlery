@@ -23,6 +23,7 @@ namespace OOOCutlery.pages
         public SettingsPage()
         {
             InitializeComponent();
+           
         }
     }
 }
